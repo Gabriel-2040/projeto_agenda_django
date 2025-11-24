@@ -4,6 +4,7 @@ Iniciar o projeto Agendda Django
 python -m venv venv
 pip install django 
 django-admin startproject projeto .
+python manage.py startapp contact .
 '''
 
 Configurar o Git
