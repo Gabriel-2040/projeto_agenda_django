@@ -1,3 +1,363 @@
-{
-    background: red;
+/* Variáveis Globais (:root) */
+
+:root {
+  --spacing: 1.5rem;                    /* Espaçamento padrão entre elementos */
+  --link-dark-color: rgb(0, 83, 134);   /* Cor escura para links normais */
+  --link-light-color: rgb(156, 217, 255); /* Cor clara para links no header */
+  --clr-white: rgb(245, 245, 255);      /* Branco personalizado (levemente azul) */
+  --clr-black: rgb(0, 0, 30);           /* Preto personalizado (levemente azul) */
+  --clr-light-gray: rgb(230, 230, 245); /* Cinza claro de fundo */
+  /* Sombras escuras com diferentes opacidades */
+  --clr-dark-shadow-5: rgba(0, 0, 10, 5%);
+  --clr-dark-shadow-10: rgba(0, 0, 10, 10%);
+  --clr-dark-shadow-20: rgba(0, 0, 10, 20%);
+  /* Sombras claras com diferentes opacidades */
+  --clr-light-shadow-5: rgba(200, 200, 255, 5%);
+  --clr-light-shadow-10: rgba(200, 200, 255, 10%);
+  --clr-light-shadow-20: rgba(200, 200, 255, 20%);
+  /* Tamanhos de layout */
+  --main-page-width: 120rem;            /* Largura máxima da página (1200px) */
+  --table-min-width: 60rem;             /* Largura mínima para tabelas (600px) */
+  /* Escala de tamanhos de fonte (usando REM) */
+  --biggest-font-size: 5rem;            /* 50px - títulos principais */
+  --bigger-font-size: 4rem;             /* 40px */
+  --big-font-size: 3.2rem;              /* 32px */
+  --medium-font-size: 2.4rem;           /* 24px */
+  --small-font-size: 1.6rem;            /* 16px - tamanho base */
+  --smaller-font-size: 1.4rem;          /* 14px */
+  --smallest-font-size: 1.2rem;         /* 12px */
+  /* Velocidades de transição */
+  --transition-fast: 300ms;             /* Transições rápidas (hover) */
+  --transition-medium: 600ms;           /* Transições médias */
+  --transition-slow: 1s;                /* Transições lentas */
+  --default-border-radius: 4px;         /* Arredondamento padrão de bordas */
 }
+
+/* Reset e Base */
+/* Remove margens e paddings padrão de TODOS os elementos */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Inclui padding e border no cálculo de width/height */
+}
+
+/* Define 1rem = 10px para facilitar cálculos (62.5% de 16px = 10px) */
+html {
+  font-size: 62.5%;
+}
+
+/* Estilos gerais do corpo da página */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Fontes do sistema */
+  line-height: 1.5;                    /* Espaçamento entre linhas */
+  font-size: var(--small-font-size);   /* Tamanho base da fonte (16px) */
+  color: var(--clr-black);             /* Cor do texto */
+  -webkit-font-smoothing: antialiased; /* Suavização de fontes no Chrome/Safari */
+  background: var(--clr-light-gray);   /* Cor de fundo da página */
+  padding: 20px;                       /* Espaçamento interno */
+}
+
+/* Garante que imagens e SVGs não ultrapassem o container */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Cabeçalho e Navegação */
+/* Container do cabeçalho */
+.header {
+  background: var(--clr-black);        /* Fundo escuro */
+  padding: var(--spacing);             /* Espaçamento interno */
+  box-shadow: 0 5px 10px 2px var(--clr-dark-shadow-20); /* Sombra inferior */
+  z-index: 1;                          /* Garante que fique acima de outros elementos */
+  position: relative;                  /* Contexto para z-index */
+}
+
+/* Título principal do header */
+.header-heading {
+  font-size: var(--biggest-font-size); /* Fonte grande (50px) */
+  text-align: center;                  /* Centralizado */
+}
+
+/* Links do header */
+.header-link {
+  color: var(--link-light-color);      /* Cor clara para contraste com fundo escuro */
+  text-decoration: none;               /* Remove sublinhado */
+  transition: filter var(--transition-fast) ease-in-out; /* Transição suave */
+}
+
+.header-link:hover {
+  filter: brightness(70%);             /* Escurece ao passar o mouse */
+}
+
+/* Menu de Navegação */
+/* Container do menu */
+.menu {
+  margin: var(--spacing);              /* Margem ao redor */
+}
+
+/* Lista do menu - transforma <ul> em flex container */
+.menu-list {
+  list-style: none;                    /* Remove marcadores da lista */
+  display: flex;                       /* Layout flexível */
+  justify-content: center;             /* Centraliza itens */
+  flex-flow: row wrap;                 /* Direção linha e permite quebra */
+}
+
+/* Itens do menu */
+.menu-link {
+  display: block;                      /* Torna clicável em toda a área */
+  padding: var(--spacing);             /* Espaçamento interno */
+  color: var(--link-light-color);      /* Cor do texto */
+  text-decoration: none;               /* Remove sublinhado */
+  transition: background-color var(--transition-fast) ease-in-out; /* Transição suave */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+}
+
+.menu-link:hover {
+  background: var(--clr-light-shadow-10); /* Fundo ao passar mouse */
+}
+
+/* Conteúdo Principal */
+/* Container principal do conteúdo */
+.content {
+  max-width: var(--main-page-width);   /* Largura máxima (1200px) */
+  margin: calc(var(--spacing) * 2) auto; /* Margem superior/inferior e centralizado */
+  padding: var(--spacing);             /* Espaçamento interno */
+  background: var(--clr-white);        /* Fundo branco */
+  box-shadow: 2px 2px 5px var(--clr-dark-shadow-20); /* Sombra suave */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+}
+/* Tabelas */
+/* Container para tabelas responsivas */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;                    /* Scroll horizontal em telas pequenas */
+}
+
+/* Tabela de contatos */
+.contacts-table {
+  width: 100%;
+  min-width: var(--table-min-width);   /* Largura mínima (600px) */
+  border-collapse: collapse;           /* Remove espaços entre bordas */
+}
+
+/* Legenda da tabela */
+.table-caption {
+  font-size: var(--medium-font-size);  /* Tamanho médio (24px) */
+  font-weight: bold;                   /* Negrito */
+  padding: var(--spacing);             /* Espaçamento */
+}
+
+/* Linhas da tabela */
+.table-row {
+  text-align: left;                    /* Alinha texto à esquerda */
+  text-overflow: ellipsis;             /* Corta texto longo com "..." */
+  transition: background-color var(--transition-fast) ease-in-out; /* Transição suave */
+}
+
+/* Listras zebradas - linhas pares com fundo diferente */
+.table-row:nth-of-type(2n) {
+  background: var(--clr-dark-shadow-5); /* Fundo muito suave */
+}
+
+/* Efeito hover nas linhas (exceto cabeçalho) */
+.table-row:not(.table-row-header):hover {
+  background: var(--clr-dark-shadow-10); /* Fundo ao passar mouse */
+}
+
+/* Cabeçalho da tabela */
+.table-row-header {
+  background: var(--clr-light-gray);   /* Fundo cinza claro */
+  color: var(--clr-black);             /* Cor do texto */
+}
+
+/* Células da tabela */
+.table-cel,
+.table-header {
+  padding: var(--spacing);             /* Espaçamento interno */
+}
+
+/* Links dentro da tabela */
+.table-link {
+  color: var(--link-dark-color);       /* Cor padrão do link */
+  transition: color var(--transition-fast) ease-in-out; /* Transição suave */
+  text-decoration: none;               /* Remove sublinhado */
+}
+
+.table-link:hover {
+  color: var(--clr-black);             /* Cor ao passar mouse */
+}
+
+/* Layout Responsivo */
+/* Em telas maiores que 600px */
+@media (min-width: 600px) {
+  .single-contact {
+    max-width: 80%;                    /* Largura máxima de 80% */
+    margin: calc(var(--spacing) * 2) auto; /* Centralizado com margem */
+  }
+}
+
+/* Página de Contato Individual */
+.single-contact h1 {
+  margin: 1rem 0;                      /* Margem vertical para h1 */
+}
+
+.single-contact p {
+  margin: 1rem 0;                      /* Margem vertical para parágrafos */
+}
+
+/* Paginação */
+.pagination {
+  margin-top: var(--spacing);          /* Margem superior */
+  display: flex;                       /* Layout flexível */
+  justify-content: center;             /* Centraliza */
+  padding: calc(var(--spacing) * 0.8); /* Padding reduzido */
+  font-size: var(--small-font-size);   /* Fonte pequena */
+}
+
+.pagination .step-links {
+  display: flex;                       /* Layout flexível */
+  gap: calc(var(--spacing) * 0.8);     /* Espaço entre links */
+}
+
+.pagination .step-links a {
+  color: var(--link-dark-color);       /* Cor do link */
+  transition: color var(--transition-fast) ease-in-out; /* Transição suave */
+  text-decoration: none;               /* Remove sublinhado */
+  display: block;                      /* Toda área clicável */
+}
+/* Busca */
+
+.search {
+  display: flex;                       /* Layout flexível */
+  justify-content: center;             /* Centraliza */
+}
+
+.search-input {
+  font-size: var(--medium-font-size);  /* Tamanho médio de fonte */
+  padding: 1rem 2rem;                  /* Espaçamento interno */
+  width: 100%;                         /* Largura total */
+  max-width: 32rem;                    /* Largura máxima */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+  border: 1px solid var(--link-light-color); /* Borda azul clara */
+}
+
+.search-input:focus {
+  box-shadow: 0 0 15px var(--link-light-color); /* Glow azul ao focar */
+}
+
+/* Mensagens do Sistema */
+.message {
+  max-width: 600px;                    /* Largura máxima */
+  margin: var(--spacing) auto;         /* Centralizado com margem */
+  margin-top: calc(var(--spacing) * 2); /* Margem superior maior */
+  padding: var(--spacing);             /* Espaçamento interno */
+  text-align: center;                  /* Texto centralizado */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+  font-size: var(--smaller-font-size); /* Fonte menor */
+}
+
+/* Mensagem de sucesso */
+.message.success {
+  background: rgba(0, 255, 0, 0.3);   /* Fundo verde transparente */
+  border: 1px solid rgba(0, 255, 0, 90%); /* Borda verde */
+}
+
+/* Mensagem de erro */
+.message.error {
+  background: rgba(255, 0, 0, 0.3);   /* Fundo vermelho transparente */
+  border: 1px solid rgba(255, 0, 0, 90%); /* Borda vermelha */
+}
+
+/* Mensagem de aviso */
+.message.warning {
+  background: rgba(255, 255, 0, 0.3); /* Fundo amarelo transparente */
+  border: 1px solid rgba(255, 255, 0, 90%); /* Borda amarela */
+}
+
+/* Formulários */
+.form-wrapper {
+  max-width: 60rem;                    /* Largura máxima do formulário */
+  margin: var(--spacing) auto;         /* Centralizado */
+}
+
+.form-content {
+  margin: var(--spacing) 0;            /* Margem vertical */
+}
+
+.form-group {
+  display: flex;                       /* Layout flexível */
+  flex-direction: column;              /* Empilha elementos verticalmente */
+  padding-bottom: var(--spacing);      /* Espaço entre grupos */
+}
+
+/* Lista de erros de validação */
+.errorlist {
+  list-style: none;                    /* Remove marcadores */
+  font-size: var(--smaller-font-size); /* Fonte menor */
+  color: tomato;                       /* Cor vermelha para erros */
+}
+
+.errorlist.nonfield {
+  color: inherit;                      /* Mantém cor padrão para erros gerais */
+}
+
+.form-group p {
+  margin: 1em 0;                       /* Margem vertical para parágrafos */
+}
+
+/* Texto de ajuda e listas relacionadas */
+.form-group .help-text,
+.form-group .help-text ~ ul {
+  margin: 0;                           /* Remove margens */
+  font-size: var(--smallest-font-size); /* Fonte muito pequena */
+  list-style: none;                    /* Remove marcadores */
+}
+
+/* Campos do formulário */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 1rem;                       /* Espaçamento interno */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+  border: 1px solid var(--link-dark-color); /* Borda azul escura */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;                       /* Remove contorno padrão */
+  box-shadow: 0 0 5px var(--link-dark-color); /* Glow azul ao focar */
+}
+
+.form-group label {
+  font-size: var(--smaller-font-size); /* Fonte menor para labels */
+}
+
+/* Botões */
+.btn {
+  background-color: var(--link-dark-color); /* Fundo azul escuro */
+  color: var(--clr-white);             /* Texto branco */
+  font-weight: bold;                   /* Negrito */
+  border: none;                        /* Remove borda */
+  padding: 1rem 2rem;                  /* Espaçamento interno */
+  border-radius: var(--default-border-radius); /* Cantos arredondados */
+  cursor: pointer;                     /* Cursor de mão */
+  transition: filter var(--transition-fast) ease-in-out; /* Transição suave */
+}
+
+.btn:hover {
+  filter: brightness(90%);             /* Clareia ao passar mouse */
+}
+
+.btn:focus,
+.btn:active {
+  filter: brightness(80%);             /* Escurece ao clicar */
+  box-shadow: 0 0 5px var(--link-dark-color); /* Glow azul */
+}
+
