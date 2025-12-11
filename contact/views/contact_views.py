@@ -75,3 +75,4 @@ def search(request):
         request,'contact/index.html',
         context
     )
+
