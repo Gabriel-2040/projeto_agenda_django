@@ -19,6 +19,8 @@
             </p>
         {% endif %}
 
+
+        {% if request.user==contact.owner %}
         <div class ='contact-links'>
             {% comment %} todo formulario no django precisa de um csrf_token para asseguar a segurança {% endcomment %}
           
@@ -34,5 +36,7 @@
                 {% endif %}
             </form>
         </div>
+
+{% endif %}
     </div>
 {% endblock content %} 

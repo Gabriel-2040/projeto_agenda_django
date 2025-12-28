@@ -279,6 +279,11 @@ svg {
   background: rgba(255, 255, 0, 0.3); /* Fundo amarelo transparente */
   border: 1px solid rgba(255, 255, 0, 90%); /* Borda amarela */
 }
+/* Mensagem de informacao */
+.message.info {
+  background: rgba(0, 0, 255, 0.3); /* Fundo amarelo transparente */
+  border: 1px solid rgba(0, 0, 255, 0.3); /* Borda amarela */
+}
 
 /* Formulários */
 .form-wrapper {
